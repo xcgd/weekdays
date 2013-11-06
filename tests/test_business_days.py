@@ -13,6 +13,19 @@ def test_simple_week():
     assert res == [datetime.datetime(2013, 11, 1, 0, 0)]
 
 
+def test_simple_week_othernonworking():
+    start = datetime.datetime(2013, 11, 1)
+    end = datetime.datetime(2013, 11, 3)
+    nonworkingdays = [rrule.SU, rrule.MO]
+
+    res = get_business_days(start, end, nonworkingdays)
+    print "Res: %s" % res
+    assert res == [
+        datetime.datetime(2013, 11, 1, 0, 0),
+        datetime.datetime(2013, 11, 2, 0, 0),
+    ]
+
+
 def test_naive_full_month():
     start = datetime.datetime(2013, 11, 1)
     end = datetime.datetime(2013, 11, 30)
