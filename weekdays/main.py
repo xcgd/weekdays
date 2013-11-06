@@ -23,7 +23,7 @@ def get_business_days(alpha, omega, weekoff=None, holidays=None):
     if weekoff:
         # here's where we exclude the weekend dates
         dates.exrule(rrule.rrule(
-            rrule.DAILY, byweekday=(rrule.SA, rrule.SU), dtstart=alpha)
+            rrule.DAILY, byweekday=weekoff, dtstart=alpha)
         )
 
     if holidays:
