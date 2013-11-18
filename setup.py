@@ -29,6 +29,5 @@ setup(name='weekdays',
       entry_points="""
       # -*- Entry points: -*-
       """,
-      tests_require=['nose'],
-      test_suite='nose.collector',
+      tests_require=['nose', 'coverage'],
       )
