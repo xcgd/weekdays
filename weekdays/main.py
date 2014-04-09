@@ -1,4 +1,5 @@
 from dateutil import rrule
+import datetime
 
 
 def get_business_days(alpha, omega, weekoff=None, holidays=None):
@@ -9,8 +10,8 @@ def get_business_days(alpha, omega, weekoff=None, holidays=None):
     @param weekoff: a list of non working days in a normal week
     @type weekend: list of rrule.weekdays. Ex: [rrule.SA, rrule.SU]
     @param holidays: a list of special non working days
-    @type holidays: list of datetime.datetime.
-        ex: [datetime.datetime(2013, 11, 11)]
+    @type holidays: list of rrule args or dates.
+        ex: [{'freq':dateutil.rrule.YEARLY, 'bymonthday':1, 'bymonth':11}]
     """
     # create an rrule.rruleset instance
     dates = rrule.rruleset()
@@ -27,8 +28,12 @@ def get_business_days(alpha, omega, weekoff=None, holidays=None):
         )
 
     if holidays:
-        result = [day for day in dates if day not in holidays]
-    else:
-        result = list(dates)
+        for holiday in holidays:
+            if isinstance(holiday, datetime.datetime):
+                dates.exdate(holiday)
+            else:
+                complete_holiday = holiday.copy()
+                complete_holiday['dtstart'] = alpha
+                dates.exrule(rrule.rrule(**complete_holiday))
 
-    return result
+    return list(dates)
