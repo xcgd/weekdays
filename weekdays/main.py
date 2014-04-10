@@ -32,7 +32,9 @@ def get_business_days(alpha, omega, weekoff=None, holidays=None):
             if isinstance(holiday, datetime.datetime):
                 dates.exdate(holiday)
             else:
-                complete_holiday = holiday.copy()
+                complete_holiday = {}
+                for key in holiday:
+                    complete_holiday[key] = holiday[key]
                 complete_holiday['dtstart'] = alpha
                 dates.exrule(rrule.rrule(**complete_holiday))
 
