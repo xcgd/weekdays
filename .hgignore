@@ -14,3 +14,6 @@ nose*
 cover/*
 .project
 .pydevproject
+.idea/*
+htmlcov
+.tox
