@@ -10,7 +10,7 @@ def test_simple_week():
     nonworkingdays = [rrule.SA, rrule.SU]
 
     res = get_business_days(start, end, nonworkingdays)
-    print "Res: %s" % res
+    print("Res: %s" % res)
     assert res == [datetime.datetime(2013, 11, 1, 0, 0)]
 
 
@@ -20,7 +20,7 @@ def test_simple_week_othernonworking():
     nonworkingdays = [rrule.SU, rrule.MO]
 
     res = get_business_days(start, end, nonworkingdays)
-    print "Res: %s" % res
+    print("Res: %s" % res)
     assert res == [
         datetime.datetime(2013, 11, 1, 0, 0),
         datetime.datetime(2013, 11, 2, 0, 0),
@@ -33,7 +33,7 @@ def test_naive_full_month():
     nonworkingdays = [rrule.SA, rrule.SU]
 
     res = get_business_days(start, end, nonworkingdays)
-    print "Res: %s" % res
+    print("Res: %s" % res)
     assert res == [
         datetime.datetime(2013, 11, 1, 0, 0),
         datetime.datetime(2013, 11, 4, 0, 0),
@@ -69,7 +69,7 @@ def test_full_month():
     ]
 
     res = get_business_days(start, end, nonworkingdays, holidays=holidays)
-    print "Res: %s" % res
+    print("Res: %s" % res)
     assert res == [
         datetime.datetime(2013, 11, 4, 0, 0),
         datetime.datetime(2013, 11, 5, 0, 0),
@@ -98,12 +98,12 @@ def test_full_month_rrule_args():
     end = datetime.datetime(2013, 11, 30)
     nonworkingdays = [rrule.SA, rrule.SU]
     holidays = [
-        {'freq':dateutil.rrule.YEARLY, 'bymonthday':1, 'bymonth':11},
-        {'freq':dateutil.rrule.YEARLY, 'bymonthday':11, 'bymonth':11},
+        {'freq': dateutil.rrule.YEARLY, 'bymonthday': 1, 'bymonth': 11},
+        {'freq': dateutil.rrule.YEARLY, 'bymonthday': 11, 'bymonth': 11},
     ]
 
     res = get_business_days(start, end, nonworkingdays, holidays=holidays)
-    print "Res: %s" % res
+    print("Res: %s" % res)
     assert res == [
         datetime.datetime(2013, 11, 4, 0, 0),
         datetime.datetime(2013, 11, 5, 0, 0),
