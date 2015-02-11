@@ -5,10 +5,15 @@ import datetime
 def get_business_days(alpha, omega, weekoff=None, holidays=None):
     """return a list of business days between (inclusive) the
     from and to limits.
+    @param alpha: the start limit (inclusive)
     @type alpha: datetime.datetime
+
+    @param omega: the stop limit (inclusive)
     @type omega: datetime.datetime
+
     @param weekoff: a list of non working days in a normal week
-    @type weekend: list of rrule.weekdays. Ex: [rrule.SA, rrule.SU]
+    @type weekoff: list of rrule.weekdays. Ex: [rrule.SA, rrule.SU]
+
     @param holidays: a list of special non working days
     @type holidays: list of rrule args or dates.
         ex: [{'freq':dateutil.rrule.YEARLY, 'bymonthday':1, 'bymonth':11}]
